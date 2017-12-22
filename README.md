@@ -18,4 +18,7 @@ Go to your IDE and run the spring boot application
 To show prometheus logs without the UI go to http://localhost:8080/prometheus
 
 ### Types of metrics
+- for Prometheus metrics
 https://prometheus.io/docs/concepts/metric_types/
+- for Spring Actuator metrics
+http://localhost:8080/metrics

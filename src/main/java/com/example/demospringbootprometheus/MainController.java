@@ -14,7 +14,7 @@ public class MainController {
     private static final String ENDPOINT_A = "/endpointA";
     private static final String ENDPOINT_B = "/endpointB";
 
-    @Timed(name = ENDPOINT_A)
+    @Timed(name = ENDPOINT_A, absolute = true)
     @GetMapping(ENDPOINT_A)
     public String handlerA() throws InterruptedException {
 
@@ -25,7 +25,7 @@ public class MainController {
         return ENDPOINT_A;
     }
 
-    @Timed(name = ENDPOINT_B)
+    @Timed(name = ENDPOINT_B, absolute = true)
     @GetMapping(ENDPOINT_B)
     public String handlerB() throws InterruptedException {
 

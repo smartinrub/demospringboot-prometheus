@@ -1,5 +1,6 @@
 package com.example.demospringbootprometheus;
 
+import com.codahale.metrics.annotation.Timed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,18 +11,29 @@ public class MainController {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    @GetMapping("/endpointA")
+    private static final String ENDPOINT_A = "/endpointA";
+    private static final String ENDPOINT_B = "/endpointB";
+
+    @Timed(name = ENDPOINT_A, absolute = true)
+    @GetMapping(ENDPOINT_A)
     public String handlerA() throws InterruptedException {
-        logger.info("/endpointA ");
-        Thread.sleep((long)(Math.random() * 1000));
-        return "/endpointA";
+
+        double delay = Math.random() * 10000;
+        logger.info(ENDPOINT_A + " reached in " + delay / 1000  + " seconds ");
+        Thread.sleep((long) delay);
+
+        return ENDPOINT_A;
     }
 
-    @GetMapping("/endpointB")
+    @Timed(name = ENDPOINT_B, absolute = true)
+    @GetMapping(ENDPOINT_B)
     public String handlerB() throws InterruptedException {
-        logger.info("/endpointB ");
-        Thread.sleep((long)(Math.random() * 1000));
-        return "/endpointB";
+
+        double delay = Math.random() * 1000;
+        logger.info(ENDPOINT_B + " reached in " + delay / 1000 + " seconds ");
+        Thread.sleep((long) delay);
+
+        return ENDPOINT_B;
     }
 
 }
